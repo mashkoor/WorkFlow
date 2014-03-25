@@ -218,6 +218,7 @@ namespace JPClientService
         {
             //Dictionary<string, string> vars = new Dictionary<string, string>();
             //vars.Add("MHandler", "0");
+            //added test comment forgit
             StateMachine<int, string> sm = CreateInstance(null);
             sm.Run();
             System.Threading.Thread.Sleep(2000);
