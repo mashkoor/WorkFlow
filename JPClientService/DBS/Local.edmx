@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestAppsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="TestAppsModelStoreContainer">
+          <EntitySet Name="WFAction" EntityType="TestAppsModel.Store.WFAction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WFActionMovement" EntityType="TestAppsModel.Store.WFActionMovement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WFCondition" EntityType="TestAppsModel.Store.WFCondition" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WFConditionMovement" EntityType="TestAppsModel.Store.WFConditionMovement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WFMovement" EntityType="TestAppsModel.Store.WFMovement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WFStateTrack" EntityType="TestAppsModel.Store.WFStateTrack" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WorkflowInstance" EntityType="TestAppsModel.Store.WorkflowInstance" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="WFAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ActionType" Type="int" Nullable="false" />
+          <Property Name="FrmEmailId" Type="nvarchar" MaxLength="100" />
+          <Property Name="ToList" Type="nvarchar(max)" />
+          <Property Name="Actns" Type="nvarchar(max)" />
+          <Property Name="TemplateFile" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="WFActionMovement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StepId" Type="int" Nullable="false" />
+          <Property Name="ActionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WFCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CondType" Type="int" Nullable="false" />
+          <Property Name="Condns" Type="nvarchar(max)" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WFConditionMovement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ConditionGroup" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="StepId" Type="int" Nullable="false" />
+          <Property Name="CondnId" Type="int" />
+        </EntityType>
+        <EntityType Name="WFMovement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WFId" Type="int" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="ToStatus" Type="nchar" MaxLength="10" />
+          <Property Name="ToStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WFStateTrack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateOccured" Type="datetime" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkflowInstance">
+          <Key>
+            <PropertyRef Name="WorkflowInstanceInternalId" />
+          </Key>
+          <Property Name="WorkflowInstanceInternalId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowInstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContextGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CallerInstanceId" Type="uniqueidentifier" />
+          <Property Name="CallPath" Type="nvarchar" MaxLength="400" />
+          <Property Name="CallerContextGuid" Type="uniqueidentifier" />
+          <Property Name="CallerParentContextGuid" Type="uniqueidentifier" />
+          <Property Name="WorkflowTypeId" Type="int" Nullable="false" />
+          <Property Name="InitializedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DbInitializedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="DbEndDateTime" Type="datetime" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestAppsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TestAppsEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="WFActions" EntityType="TestAppsModel.WFAction" />
+          <EntitySet Name="WFActionMovements" EntityType="TestAppsModel.WFActionMovement" />
+          <EntitySet Name="WFConditions" EntityType="TestAppsModel.WFCondition" />
+          <EntitySet Name="WFConditionMovements" EntityType="TestAppsModel.WFConditionMovement" />
+          <EntitySet Name="WFMovements" EntityType="TestAppsModel.WFMovement" />
+          <EntitySet Name="WorkflowInstances" EntityType="TestAppsModel.WorkflowInstance" />
+          <EntitySet Name="WFStateTracks" EntityType="TestAppsModel.WFStateTrack" />
+        </EntityContainer>
+        <EntityType Name="WFAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionType" Type="Int32" Nullable="false" />
+          <Property Name="FrmEmailId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ToList" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Actns" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TemplateFile" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WFActionMovement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StepId" Type="Int32" Nullable="false" />
+          <Property Name="ActionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WFCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CondType" Type="Int32" Nullable="false" />
+          <Property Name="Condns" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FilePath" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WFConditionMovement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ConditionGroup" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="StepId" Type="Int32" Nullable="false" />
+          <Property Name="CondnId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="WFMovement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="WFId" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="ToStatus" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="ToStatusId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkflowInstance">
+          <Key>
+            <PropertyRef Name="WorkflowInstanceInternalId" />
+          </Key>
+          <Property Name="WorkflowInstanceInternalId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="ContextGuid" Type="Guid" Nullable="false" />
+          <Property Name="CallerInstanceId" Type="Guid" />
+          <Property Name="CallPath" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="CallerContextGuid" Type="Guid" />
+          <Property Name="CallerParentContextGuid" Type="Guid" />
+          <Property Name="WorkflowTypeId" Type="Int32" Nullable="false" />
+          <Property Name="InitializedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DbInitializedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DbEndDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="WFStateTrack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="InstanceId" Nullable="false" />
+          <Property Type="DateTime" Name="DateOccured" Nullable="false" Precision="3" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StateId" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestAppsModelStoreContainer" CdmEntityContainer="TestAppsEntities">
+          <EntitySetMapping Name="WFActions">
+            <EntityTypeMapping TypeName="TestAppsModel.WFAction">
+              <MappingFragment StoreEntitySet="WFAction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="FrmEmailId" ColumnName="FrmEmailId" />
+                <ScalarProperty Name="ToList" ColumnName="ToList" />
+                <ScalarProperty Name="Actns" ColumnName="Actns" />
+                <ScalarProperty Name="TemplateFile" ColumnName="TemplateFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WFActionMovements">
+            <EntityTypeMapping TypeName="TestAppsModel.WFActionMovement">
+              <MappingFragment StoreEntitySet="WFActionMovement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StepId" ColumnName="StepId" />
+                <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WFConditions">
+            <EntityTypeMapping TypeName="TestAppsModel.WFCondition">
+              <MappingFragment StoreEntitySet="WFCondition">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CondType" ColumnName="CondType" />
+                <ScalarProperty Name="Condns" ColumnName="Condns" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WFConditionMovements">
+            <EntityTypeMapping TypeName="TestAppsModel.WFConditionMovement">
+              <MappingFragment StoreEntitySet="WFConditionMovement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConditionGroup" ColumnName="ConditionGroup" />
+                <ScalarProperty Name="StepId" ColumnName="StepId" />
+                <ScalarProperty Name="CondnId" ColumnName="CondnId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WFMovements">
+            <EntityTypeMapping TypeName="TestAppsModel.WFMovement">
+              <MappingFragment StoreEntitySet="WFMovement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WFId" ColumnName="WFId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ToStatus" ColumnName="ToStatus" />
+                <ScalarProperty Name="ToStatusId" ColumnName="ToStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkflowInstances">
+            <EntityTypeMapping TypeName="TestAppsModel.WorkflowInstance">
+              <MappingFragment StoreEntitySet="WorkflowInstance">
+                <ScalarProperty Name="WorkflowInstanceInternalId" ColumnName="WorkflowInstanceInternalId" />
+                <ScalarProperty Name="WorkflowInstanceId" ColumnName="WorkflowInstanceId" />
+                <ScalarProperty Name="ContextGuid" ColumnName="ContextGuid" />
+                <ScalarProperty Name="CallerInstanceId" ColumnName="CallerInstanceId" />
+                <ScalarProperty Name="CallPath" ColumnName="CallPath" />
+                <ScalarProperty Name="CallerContextGuid" ColumnName="CallerContextGuid" />
+                <ScalarProperty Name="CallerParentContextGuid" ColumnName="CallerParentContextGuid" />
+                <ScalarProperty Name="WorkflowTypeId" ColumnName="WorkflowTypeId" />
+                <ScalarProperty Name="InitializedDateTime" ColumnName="InitializedDateTime" />
+                <ScalarProperty Name="DbInitializedDateTime" ColumnName="DbInitializedDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="DbEndDateTime" ColumnName="DbEndDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WFStateTracks">
+            <EntityTypeMapping TypeName="TestAppsModel.WFStateTrack">
+              <MappingFragment StoreEntitySet="WFStateTrack">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="DateOccured" ColumnName="DateOccured" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

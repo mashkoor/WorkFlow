@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "AddXMLCondition";
+}
+
+@model JPWFUI.Models.XMLConditionModel
+ @using (Html.BeginForm())
+ {
+     @Html.HiddenFor(c=> c.CondId)
+     <div>
+          
+         Condition Type : @Html.DropDownListFor(c => c.CondnType, Model.AvailableCondTypes, "")<br />
+         Name : @Html.TextBoxFor(c=> c.CondName)<br />
+         Value : @Html.TextBoxFor(c=> c.CondValue)<br />
+         <input type ="submit" value ="save" />
+     </div> 
+ }
+ 

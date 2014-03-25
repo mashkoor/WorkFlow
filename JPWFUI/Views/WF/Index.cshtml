@@ -1,0 +1,24 @@
+﻿@model JPWFUI.Models.WFFlowCollectionModel
+@foreach (var flo in Model.WFDefs)
+{
+    <div>
+    <div style ="float:left"><b>@flo.FrmStepName<span> -> </span>@flo.ToStepName</b></div>
+    <div style ="float:right">@Html.ActionLink("Add Condition","AddCondition",new {  LnkId = flo.Id})@Html.ActionLink("Remove Step","RemoveStep",new {  Lnk = flo.Id})</div>
+    @foreach (var cn in flo.Conditions)
+    {
+        <div style="clear:both;"><p> Group : @cn.ConditionGroup <br />
+        @foreach (var xc in cn.Conditions)
+        {
+            <span>@xc.CondName : </span>
+            <span>@xc.CondValue</span><br />
+            
+        }
+        @Html.ActionLink("Delete Condition","RemoveCondition",new {  LnkId = flo.Id, CnId = cn.Id})
+        </p>
+       </div>
+    }
+    <hr />
+    </div>
+}
+<hr />
+<div>@Html.ActionLink("Add Step","CreateStep",new {  WfId = Model.WFID})</div>

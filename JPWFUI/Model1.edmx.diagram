@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bb0fe370131422fb8ba94f7a259dfe7" Name="Diagram1">
+        <EntityTypeShape EntityType="TestAppsModel.WFAction" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestAppsModel.WFActionMovement" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestAppsModel.WFCondition" Width="1.5" PointX="7" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestAppsModel.WFMovement" Width="2" PointX="0.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestAppsModel.WFStateTrack" Width="1.5" PointX="5.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestAppsModel.tblStatu" Width="1.5" PointX="10.188499313866952" PointY="30.540202184831816" />
+        <EntityTypeShape EntityType="TestAppsModel.WFConditionMovement" Width="2.375" PointX="3.25" PointY="3.875" />
+        <AssociationConnector Association="TestAppsModel.WFMovementWFConditionMovement" />
+        <AssociationConnector Association="TestAppsModel.WFConditionWFConditionMovement" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

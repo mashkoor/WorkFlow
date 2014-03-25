@@ -1,0 +1,21 @@
+﻿@model JPWFUI.Models.AddConditionModel
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(c=> c.LnkId)
+    for(int i = 0; i < Model.MoveConditions.Count(); i++)
+    {
+        
+        @Html.HiddenFor(c => Model.MoveConditions[i].Id);
+        @Html.CheckBoxFor(c => Model.MoveConditions[i].Selected);
+        <span style="margin-left:150px">@Html.DropDownListFor(c => Model.MoveConditions[i].ConditionGroup, Model.MoveConditions[i].AvailableConditionGroups, "")</span>
+    <br />
+        foreach (var xc in Model.MoveConditions[i].Conditions)
+        {
+            <span>@xc.CondName : </span>
+            <span>@xc.CondValue</span><br />
+            
+        }
+        <hr />    
+    } 
+    <input type ="submit" value ="Save" />
+}

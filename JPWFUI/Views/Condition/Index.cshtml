@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model List<JPWFUI.Models.ConditionModel>
+@foreach (var cn in Model)
+{
+    <h3>@cn.Id</h3>
+    <div style ="float:right;">
+        @Html.ActionLink("Add New XML","AddXMLCondition",new {  CnId = cn.Id})
+    </div>
+
+        <div style ="clear:both">
+        <ul>
+    @foreach (var xcn in cn.Conditions)
+    {
+        string cntype = "";
+        if (xcn.CondnType == 0)
+        {
+            cntype = "Return value";
+        }
+        if (xcn.CondnType == 1)
+        {
+            cntype = "Query";
+        }
+        if (xcn.CondnType == 2)
+        {
+            cntype = "Parameter";
+        }
+            <li >
+                <span>Name : @xcn.CondName / Type : @cntype</span><br />
+                <span>value : @xcn.CondValue</span><br />
+                <div style ="float:right">
+                @Html.ActionLink("Delete","RemoveXMLCondition",new {  CnId = cn.Id,XmlCnId = xcn.Id})
+                </div>
+                <hr />
+            </li>
+    }
+        </ul>
+    </div>
+}
+<hr />
+<div style ="float:right;">
+        @Html.ActionLink("New Condition","CreateCondition")
+</div>

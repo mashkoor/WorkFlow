@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "AddXMLCondition";
+}
+
+@model JPWFUI.Models.WFFlowModel
+ @using (Html.BeginForm())
+ {
+     @Html.HiddenFor(c=> c.WFID)
+     <div>
+         From Step : @Html.DropDownListFor(c => c.FrmStepID, Model.FrmSteps, "") <span >To Step : </span>@Html.DropDownListFor(c => c.ToStepID, Model.ToSteps, "")<br />
+         <input type ="submit" value ="save" />
+     </div> 
+ }
